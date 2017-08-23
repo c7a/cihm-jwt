@@ -18,4 +18,4 @@ Simply include the middleware in your app as follows:
 
     app.listen(3000)
 
-The middleware sets `ctx.state.jwtData` to JWT's payload.
+The middleware sets `ctx.state.jwtData` to the JWT's payload.

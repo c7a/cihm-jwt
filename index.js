@@ -1,7 +1,7 @@
 const unless = require('koa-unless');
 const nJwt = require('njwt');
 
-module.exports = (opts) => {
+module.exports = (secrets) => {
   const middleware = async function jwt(ctx, next) {
     let token = ctx.query['token'] ||
       ctx.cookies.get('c7a2_token') ||
@@ -21,9 +21,9 @@ or be set in a cookie, with key c7a2_token`);
     }
 
     let validatedIssuer, jwtData;
-    for (issuer of Object.keys(ctx.config.secrets)) {
+    for (issuer of Object.keys(secrets)) {
       try {
-        jwtData = nJwt.verify(token, ctx.config.secrets[issuer]).body;
+        jwtData = nJwt.verify(token, secrets[issuer]).body;
         validatedIssuer = issuer;
         break;
       } catch (err) {
@@ -38,7 +38,7 @@ or be set in a cookie, with key c7a2_token`);
       ctx.throw(401, `Validated issuer ${validatedIssuer} does not match JWT 'iss' claim`);
     }
 
-    ctx.state.cihmJwt = jwtData;
+    ctx.state.jwtData = jwtData;
 
     return next();
   };

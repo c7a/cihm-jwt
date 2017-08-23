@@ -3,7 +3,7 @@ const http = require('http');
 const request = require('supertest');
 const nJwt = require('njwt');
 
-const secrets = require('./config').secrets;
+const secrets = { "1": "fnorp", "2": "blarg" };
 
 let jwts = {
   full: nJwt.create({ iss: 1 }, secrets[1]),
@@ -17,9 +17,8 @@ jwts.expired.setExpiration(new Date('2017-01-01'));
 const jwt = require('..');
 
 const app = new Koa();
-app.context.config = { secrets };
 
-app.use(jwt());
+app.use(jwt(secrets));
 
 // let's assume for testing purposes that credentialed requests get 200
 app.use(ctx => { ctx.status = 200; });

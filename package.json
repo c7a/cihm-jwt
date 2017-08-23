@@ -1,0 +1,23 @@
+{
+  "name": "cihm-jwt",
+  "version": "1.0.0",
+  "description": "Koa.js middleware for handling C7A2-format JWTs",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "testwatch": "./node_modules/nodemon/bin/nodemon.js -e js -x 'yarn run test'"
+  },
+  "repository": "https://github.com/c7a/cihm-jwt",
+  "author": "Sascha Adler <sascha.adler@canadiana.ca>",
+  "license": "MIT",
+  "dependencies": {
+    "koa-unless": "^1.0.7",
+    "njwt": "^0.4.0"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4",
+    "koa": "^2.3.0",
+    "nodemon": "^1.11.0",
+    "supertest": "^3.0.0"
+  }
+}

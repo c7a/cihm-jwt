@@ -19,3 +19,9 @@ Simply include the middleware in your app as follows:
     app.listen(3000)
 
 The middleware sets `ctx.state.jwtData` to the JWT's payload.
+
+## Mandatory payload claims
+
+### `iss`
+
+C7A2-format JWTs expect the `iss` claim to be set to the key used to look up the signature secret in the application config.
